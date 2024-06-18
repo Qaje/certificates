@@ -99,6 +99,9 @@ return [
         ],
     ],
 
+    'providers' => [Spatie\Permission\PermissionServiceProvider::class,],
+
+
     /*
     |--------------------------------------------------------------------------
     | Password Confirmation Timeout
