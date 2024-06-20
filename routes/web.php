@@ -7,11 +7,12 @@ use App\Http\Controllers\UserController;
 Route::get('/', function () {
     return view('login');
 });
-Route::get('/perfil', function () {
-    return view('template');
-});
 
+Route::get('/perfil',[UserController::class, 'index']);
 
+// Route::get('/perfil', function () {
+//     return view('template');
+// });
 // Route::get('', function () {
 //     return view('welcome');
 // });

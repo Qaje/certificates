@@ -12,14 +12,15 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        
-        if ($request->ajax()) {   
-            $users = User::select('*');
-            return datatables()->of($users)->make(true);
-        }         
-        return view('users');
+
+        $users = User::all();
+        // if ($request->ajax()) {   
+        //     $users = User::all();
+        //     return datatables()->of($users)->make(true);
+        // }         
+        return view('template',compact('users'));
     }
 
     /**
