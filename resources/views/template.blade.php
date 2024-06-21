@@ -7,7 +7,8 @@
     <title>AdminLTE 3 | Dashboard</title>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="user.js"></script>
+    {{-- <script src="user.js"></script> --}}
+    <script src="{{ asset('user.js') }}"></script>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -720,7 +721,7 @@
 
             <!-- Main content -->
             <section class="content">
-                @include('user')
+                @include('User.usertable')
             </section>
             <!-- /.content -->
         </div>

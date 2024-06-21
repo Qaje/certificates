@@ -15,11 +15,7 @@ class UserController extends Controller
     public function index()
     {
 
-        $users = User::all();
-        // if ($request->ajax()) {   
-        //     $users = User::all();
-        //     return datatables()->of($users)->make(true);
-        // }         
+        $users = User::all();        
         return view('template',compact('users'));
     }
 
@@ -28,7 +24,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::orderBy('id','DESC')->get();
+        return view('usertable',compact('users'));
     }
 
     /**
@@ -36,7 +33,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        try{
+            $user = new User();
+            $user->name  = $request->name; 
+            $user->email = $request->email; 
+            $user->password = Hash::make($request->password);  
+            $user->save();
+        }catch(Exception $e){
+            return "<div style='backgoround-color:red'> ERROR</div>";
+        }
     }
 
     /**
@@ -45,6 +51,9 @@ class UserController extends Controller
     public function show(string $id)
     {
         //
+         $user = User::find($id);
+         return $user;
+         return view('user');
     }
 
     /**
@@ -53,6 +62,8 @@ class UserController extends Controller
     public function edit(string $id)
     {
         //
+        $user = User::find($request["id"]);
+        return $user;
     }
 
     /**
@@ -61,6 +72,13 @@ class UserController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        
+            $user = User::find($request->id);
+            $user->name  = $request->name; 
+            $user->email = $request->email; 
+            $user->password = Hash::make($request->password);  
+            return $this->create();
+        
     }
 
     /**

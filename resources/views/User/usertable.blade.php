@@ -13,18 +13,21 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Mantenimiento</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Agregar de Usuario</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
 
-                    <form action="" method="POST" id="user">
+                    <form action="" method="post" id="user">
                         @csrf
+                        <input type="hidden" name="id" id="id">
 
-                        <input type="text" class="form-control" name="name">
-                        <button class='btn btn-primary' onclick='userStore()'></button>
+                        Name<input name="name" type="text" class="form-control">
+                        Email<input name="email" type="text" class="form-control">
+                        Password<input name="password" type="password" class="form-control">
+
                     </form>
 
                 </div>
@@ -36,6 +39,12 @@
                         id="create">
                     <input type="button" value="Modificar" class="btn btn-danger" onclick="userUpdate();"
                         id="update"> --}}
+
+                    {{-- <button type="button" class='btn btn-success' value="Guardar" onclick='userStore()'
+                        id="create"></button> --}}
+
+
+                    <input type='button' value="Guardar" class="btn btn-success" onclick="userStore()" id='create'>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     </form>
                 </div>
@@ -55,8 +64,17 @@
         @foreach ($users as $user)
             <tr>
                 <td>
-                    <a href="">Editar</a>
-                    <a href="">Eliminar</a>
+                    <button type='button' class="btn btn-warning" onclick="userDestroy()" data-toggle='modal'
+                        data-target='#exampleModal2' onclick='userRoleEdit('{{ $user->id }}') return false';
+                        id='create'>Roles</button>
+
+                    <button type='button' class='btn btn-success note-icon-pencil' data-toggle='modal'
+                        data-target="#exampleModal"
+                        onclick="userEdit('{{ $user->id }}'); Up(); return false">Editar</button>
+
+                    <button class='btn btn-danger note-icon-trash'
+                        onclick="userDestroy('{{ $user->id }}'); return
+                        false">Eliminar</button>
                 </td>
                 <td>
                     {{ $user->id }}
